@@ -13,7 +13,7 @@ abstract class ApiHandler
         $this->allowed_inputs= [];
         $i = 0;
 
-        while ($input = getenv("INPUT_$i")){
+        while ($input = $_ENV["INPUT_$i"]){
             $this->allowed_inputs[] = $input;
             $i++;
         }
