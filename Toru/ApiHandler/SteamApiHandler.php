@@ -7,6 +7,11 @@ require_once("ApiHandler.php");
 class SteamApiHandler extends ApiHandler
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function printResponse($input)
     {
         if (!in_array($this->allowed_inputs, $input)){ return; }
