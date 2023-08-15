@@ -1,4 +1,7 @@
 <?php
+require_once('../Toru/ApiHandler/SteamApiHandler.php');
+
+
 use \Toru\ApiHandler\SteamApiHandler;
 $handler = new SteamApiHandler();
 
