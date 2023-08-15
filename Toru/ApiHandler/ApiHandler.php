@@ -10,11 +10,11 @@ abstract class ApiHandler
     }
 
     public function setAllowedActions(){
-        $allowed_inputs = [];
+        $this->allowed_inputs= [];
         $i = 0;
 
         while ($input = getenv("INPUT_$i")){
-            $allowed_inputs[] = $input;
+            $this->allowed_inputs[] = $input;
             $i++;
         }
     }
