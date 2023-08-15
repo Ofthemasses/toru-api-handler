@@ -4,6 +4,11 @@ abstract class ApiHandler
 {
     protected $allowed_inputs = [];
 
+    public function __construct()
+    {
+        $this->setAllowedActions();
+    }
+
     public function setAllowedActions(){
         $allowed_inputs = [];
         $i = 0;
