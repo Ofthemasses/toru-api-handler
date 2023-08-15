@@ -2,6 +2,8 @@
 
 namespace Toru\ApiHandler;
 
+require_once("ApiHandler.php");
+
 class SteamApiHandler extends ApiHandler
 {
 
