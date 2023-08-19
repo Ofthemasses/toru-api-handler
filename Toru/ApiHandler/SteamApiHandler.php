@@ -14,17 +14,32 @@ class SteamApiHandler extends ApiHandler
 
     public function printResponse($input)
     {
-        if (!in_array($input, $this->allowed_inputs)){ return "BLOCKED ACTION"; }
+        if (!in_array($input, $this->allowed_inputs)) {
+            return "BLOCKED ACTION";
+        }
 
         $steamApiUrl = "https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/";
         $apiKey = $_ENV["STEAM_API_KEY"];
         $steamUserId = $input;
 
-        $startItem = isset($_GET["startindex"]) ? $_GET["startindex"] : 0;
-        $pageSize = isset($_GET["pagesize"]) ? $_GET["pagesize"] : 100;
+        $postData = array(
+            "key" => $apiKey,
+            "steamid" => $steamUserId,
+            "startindex" => isset($_GET["startindex"]) ? $_GET["startindex"] : 0,
+            "pagesize" => isset($_GET["pagesize"]) ? $_GET["pagesize"] : 100
+        );
 
-        $url = "$steamApiUrl?key=$apiKey&steamid=$steamUserId&startindex=$startItem&pagesize=$pageSize";
+        $options = array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'content' => http_build_query($postData)
+            )
+        );
 
-        return file_get_contents($url);
+        $context = stream_context_create($options);
+        $response = file_get_contents($steamApiUrl, false, $context);
+
+        return $response;
     }
 }
