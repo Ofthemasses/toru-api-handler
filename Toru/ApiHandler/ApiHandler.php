@@ -19,5 +19,5 @@ abstract class ApiHandler
         }
     }
 
-    abstract public function printResponse($input);
+    abstract public function printResponse($args);
 }
