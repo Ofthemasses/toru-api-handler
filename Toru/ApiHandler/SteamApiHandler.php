@@ -17,7 +17,7 @@ class SteamApiHandler extends ApiHandler
         if (!in_array($input, $this->allowed_inputs)){ return "BLOCKED ACTION"; }
 
         $steamApiUrl = "https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/";
-        $apiKey = getenv("STEAM_API_KEY");
+        $apiKey = $_ENV["STEAM_API_KEY"];
         $steamUserId = $input;
 
         $startItem = isset($_GET["startindex"]) ? $_GET["startindex"] : 0;
