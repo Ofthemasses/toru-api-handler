@@ -14,7 +14,7 @@ class SteamApiHandler extends ApiHandler
 
     public function printResponse($input)
     {
-        if (!in_array($input, $this->allowed_inputs)){ return; }
+        if (!in_array($input, $this->allowed_inputs)){ return "BLOCKED ACTION"; }
 
         $steamApiUrl = "https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/";
         $apiKey = getenv("STEAM_API_KEY");
