@@ -50,7 +50,7 @@ class SteamApiHandler extends ApiHandler
             // Set up POST data
             $postData = array(
                 "key" => $apiKey,
-                "steamid" => args[0],
+                "steamid" => $args[0],
                 "itemcount" => count($children)
             );
 
@@ -58,6 +58,7 @@ class SteamApiHandler extends ApiHandler
             // Add each file id
             foreach ($children as $child) {
                 $postData["publishedfileids[$i]"] = $child['publishedfileid'];
+                $i++;
             }
 
             // Set up options for the POST request
@@ -70,7 +71,7 @@ class SteamApiHandler extends ApiHandler
             );
 
             $context = stream_context_create($options);
-            return file_get_contents($steamApiCollectionUrl, false, $context);
+            return file_get_contents($steamApiFileUrl, false, $context);
         }
         return "";
     }
